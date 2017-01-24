@@ -25,7 +25,7 @@ class Sinesp
         return array_key_exists($name, $this->dados) ? $this->dados[$name] : '';
     }
 
-    public function existe($placa = '')
+    public function existe()
     {
         return array_key_exists('codigoRetorno', $this->dados) && $this->dados['codigoRetorno'] != '3';
     }
