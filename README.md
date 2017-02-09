@@ -77,6 +77,30 @@ try {
 }
 ```
 
+## Proxy
+
+O SINESP pode bloquear conexões vindas de fora do país.
+Caso a consulta não retorne resultados por erro de conexão (por exemplo, erro de `timeout`), pode-se realizar uma consulta usando proxy.
+
+Existem diversos proxy gratuitos que podem ser encontrados facilmente na Internet. Um exemplo de utilização com proxy encontra-se abaixo:
+
+```php
+$veiculo = new Sinesp;
+$veiculo->proxy('177.54.144.208', '80'); // Com proxy, esse metodo deve ser chamado antes do metodo buscar()
+
+$veiculo->buscar('GWW-6471');
+print_r($veiculo->dados());
+```
+
+Opcionalmente, ao invés de usar o metodo `proxy($ip, $porta)`, pode-se utilizar um array associativo com as chaves `ip` e `porta` como segundo argumento do método `buscar()`:
+
+```php
+$veiculo = new Sinesp;
+$veiculo->buscar('GWW-6471', ['ip' => '177.54.144.208', 'porta' => '80']); // a consulta usara o proxy especificado
+
+print_r($veiculo->dados());
+```
+
 # Sinesp Python API Client
 
 Uma implementação em linguagem `Python` encontra-se disponível no seguinte repositório: https://github.com/victor-torres/sinesp-client/
