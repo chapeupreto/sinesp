@@ -3,6 +3,7 @@
 require_once 'Sinesp.php';
 
 $veiculo = new Sinesp;
+$veiculo->proxy('177.54.144.208', '80'); // a consulta vai usar proxy
 
 try {
     $veiculo->buscar('GWW-6471');
