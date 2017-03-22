@@ -3,7 +3,7 @@
 class Sinesp
 {
     private $secret = 'TRwf1iBwvCoSboSscGne';
-    private $url = 'http://sinespcidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa';
+    private $url = 'https://sinespcidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa';
     private $proxy = null;
 
     private $placa = '';
@@ -60,6 +60,7 @@ class Sinesp
         );
 
         $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_URL, $this->url);
 
         if ($this->proxy) {
@@ -115,21 +116,23 @@ class Sinesp
     {
         $xml=<<<EOX
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<soap:Header>
+<v:Envelope xmlns:v="http://schemas.xmlsoap.org/soap/envelope/">
+<v:Header>
 <b>samsung GT-I9192</b>
 <c>ANDROID</c>
-<d>4.4.2</d>
+<d>6.0.1</d>
+<e>4.1.5</e>
+<f>10.0.0.1</f>
 <g>%s</g>
 <l>%s</l>
 <m>8797e74f0d6eb7b1ff3dc114d4aa12d3</m>
-</soap:Header>
-<soap:Body>
-<webs:getStatus xmlns:webs="http://soap.ws.placa.service.sinesp.serpro.gov.br/">
+</v:Header>
+<v:Body>
+<n0:getStatus xmlns:n0="http://soap.ws.placa.service.sinesp.serpro.gov.br/">
 <a>%s</a>
-</webs:getStatus>
-</soap:Body>
-</soap:Envelope>
+</n0:getStatus>
+</v:Body>
+</v:Envelope>
 EOX;
         return sprintf($xml, $this->token(), strftime('%Y-%m-%d %T'), $this->placa);
     }
