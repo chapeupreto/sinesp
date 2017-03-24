@@ -82,7 +82,7 @@ try {
 O SINESP pode bloquear conexões vindas de fora do país.
 Caso a consulta não retorne resultados por erro de conexão (por exemplo, erro de `timeout`), pode-se realizar uma consulta usando proxy.
 
-Existem diversos proxy gratuitos que podem ser encontrados facilmente na Internet. Um exemplo de utilização com proxy encontra-se abaixo:
+Existem diversos proxy gratuitos (e.g., `http://proxylist.hidemyass.com/`) que podem ser encontrados facilmente na Internet. Um exemplo de utilização com proxy encontra-se abaixo:
 
 ```php
 $veiculo = new Sinesp;
