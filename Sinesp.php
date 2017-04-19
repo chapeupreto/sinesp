@@ -78,6 +78,10 @@ class Sinesp
 
     private function tratarResposta()
     {
+        if (! $this->response) {
+            throw new \Exception('O servidor retornou nenhuma resposta!');
+        }
+
         $response = str_ireplace(['soap:', 'ns2:'], '', $this->response);
 
         $this->dados = (array) simplexml_load_string($response)->Body->getStatusResponse->return;
