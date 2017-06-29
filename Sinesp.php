@@ -2,8 +2,8 @@
 
 class Sinesp
 {
-    private $secret = 'TRwf1iBwvCoSboSscGne';
-    private $url = 'https://sinespcidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa';
+    private $secret = 'XvAmRTGhQchFwzwduKYK';
+    private $url = 'https://sinespcidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa/v2';
     private $proxy = null;
 
     private $placa = '';
