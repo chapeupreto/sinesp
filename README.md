@@ -33,36 +33,23 @@ Essas informações estarão disponíveis por meio de um `array associativo` ou 
 - cURL
 - libxml / XML
 
+# Instalação
+
+Instale a versão mais recente com:
+
+```sh
+composer require chapeupreto/sinesp
+```
+
 # Utilização
 
-Após incluir e instanciar a classe `Sinesp`, o método `buscar()` deve ser empregado para recuperar informações do veiculo com a placa informada:
+Abaixo um exemplo simples e geral de utilização da biblioteca:
 
 ```php
-require_once 'Sinesp.php';
 
-$veiculo = new Sinesp;
-$veiculo->buscar('GWW-6471');
-```
+require 'vendor/autoload.php';
 
-Após a chamada do método `buscar()`, o método `dados()` irá devolver um array associativo contendo todas as informações do veículo:
-
-```php
-$resultado = $veiculo->dados();
-print_r($resultado);
-```
-
-Ao invés de utilizar todo o array retornado pelo método `dados()`, pode-se também recuperar uma informação isoladamente acessando-a como atributo do objeto:
-
-```php
-echo 'O municipio do veiculo é ', $veiculo->municipio;
-```
-
-Abaixo um exemplo simples e geral de utilização da API.
-
-```php
-<?php
-
-require_once 'Sinesp.php';
+use Sinesp/Sinesp;
 
 $veiculo = new Sinesp;
 
@@ -75,6 +62,16 @@ try {
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
+```
+
+O método `buscar()` deve ser o primeiro método a ser invocado. Esse método é empregado para localizar informações do veiculo com a placa informada.
+
+Após a chamada ao método `buscar()`, o método `dados()` irá retornar um array associativo contendo todas as informações do veículo.
+
+Ainda, ao invés de utilizar todo o array retornado pelo método `dados()`, pode-se também recuperar uma informação isoladamente acessando-a como atributo do objeto:
+
+```php
+echo 'O municipio do veiculo é ', $veiculo->municipio;
 ```
 
 ## Proxy
