@@ -46,10 +46,11 @@ composer require chapeupreto/sinesp
 Abaixo um exemplo simples e geral de utilização da biblioteca:
 
 ```php
+<?php
 
 require 'vendor/autoload.php';
 
-use Sinesp/Sinesp;
+use Sinesp\Sinesp;
 
 $veiculo = new Sinesp;
 
