@@ -2,6 +2,8 @@
 
 namespace Sinesp;
 
+use Ramsey\Uuid\Uuid;
+
 class Sinesp
 {
     private $secret = 'XvAmRTGhQchFwzwduKYK';
@@ -127,9 +129,12 @@ class Sinesp
 <b>samsung GT-I9192</b>
 <c>ANDROID</c>
 <d>6.0.1</d>
+<i>%s</i>
 <e>4.1.5</e>
 <f>10.0.0.1</f>
 <g>%s</g>
+<k>%s</k>
+<h>%s</h>
 <l>%s</l>
 <m>8797e74f0d6eb7b1ff3dc114d4aa12d3</m>
 </v:Header>
@@ -140,7 +145,7 @@ class Sinesp
 </v:Body>
 </v:Envelope>
 EOX;
-        return sprintf($xml, $this->token(), strftime('%Y-%m-%d %T'), $this->placa);
+        return sprintf($xml, $this->latitude(), $this->token(), Uuid::uuid4(), $this->longitude(), strftime('%Y-%m-%d %T'), $this->placa);
     }
 
     private function validar($placa)
@@ -151,5 +156,15 @@ EOX;
     private function ajustar($placa)
     {
         return str_replace(['-', ' '], '', $placa);
+    }
+
+    private function latitude()
+    {
+        return '-38.5' . rand(100000, 999999);
+    }
+
+    private function longitude()
+    {
+        return '-3.7' . rand(100000, 999999);
     }
 }
