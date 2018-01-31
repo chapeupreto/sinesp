@@ -6,7 +6,7 @@ use Ramsey\Uuid\Uuid;
 
 class Sinesp
 {
-    private $secret = 'XvAmRTGhQchFwzwduKYK';
+    private $secret = 'Mw6HqdLgQsX41xAGZgsF';
     private $url = 'https://sinespcidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa/v2';
     private $proxy = null;
 
