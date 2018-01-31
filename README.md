@@ -107,4 +107,6 @@ Uma implementação em linguagem `Python` encontra-se disponível no seguinte re
 
 Agradecimentos ao [@victor-torres](https://github.com/victor-torres) e seus contribuidores por disponibilizar a [implementação em Python da API](https://github.com/victor-torres/sinesp-client/), a qual serviu como base para o surgimento desta em linguagem [PHP](http://www.php.net/).
 
+Agradecimentos também ao @ricardotominaga por disponibilizar a secret key.
+
 [1]: https://www.sinesp.gov.br/sinesp-cidadao "Sinesp Cidadão"
