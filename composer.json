@@ -14,8 +14,7 @@
     "php": ">=5.4.0",
     "ext-curl": "*",
     "ext-xml": "*",
-    "ext-libxml": "*",
-    "ramsey/uuid": "^3.7"
+    "ext-libxml": "*"
   },
   "autoload": {
     "psr-4": {
