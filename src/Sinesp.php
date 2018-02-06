@@ -4,8 +4,8 @@ namespace Sinesp;
 
 class Sinesp
 {
-    private $secret = 'Mw6HqdLgQsX41xAGZgsF';
-    private $url = 'https://cidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa/v2';
+    private $secret = '#8.1.0#Mw6HqdLgQsX41xAGZgsF';
+    private $url = 'https://cidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa/v3';
     private $proxy = null;
 
     private $placa = '';
@@ -126,7 +126,7 @@ class Sinesp
 <v:Header>
 <b>samsung GT-I9192</b>
 <c>ANDROID</c>
-<d>6.0.1</d>
+<d>8.1.0</d>
 <i>%s</i>
 <e>4.1.5</e>
 <f>10.0.0.1</f>
