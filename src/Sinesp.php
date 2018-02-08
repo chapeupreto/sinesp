@@ -143,7 +143,7 @@ class Sinesp
 </v:Body>
 </v:Envelope>
 EOX;
-        return sprintf($xml, $this->latitude(), $this->token(), $this->longitude(), strftime('%Y-%m-%d %T'), $this->placa);
+        return sprintf($xml, $this->latitude(), $this->token(), $this->longitude(), strftime('%Y-%m-%d %H:%M:%S'), $this->placa);
     }
 
     private function validar($placa)
