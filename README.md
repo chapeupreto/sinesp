@@ -1,4 +1,12 @@
-# Sinesp Cidadão
+# Sinesp Cidadão PHP
+
+<a href="https://packagist.org/packages/chapeupreto/sinesp"><img src="https://poser.pugx.org/chapeupreto/sinesp/version" alt="Latest stable release"></img></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="Software license"></img></a>
+<a href="https://packagist.org/packages/chapeupreto/sinesp"><img src="https://img.shields.io/packagist/dt/chapeupreto/sinesp.svg" alt="Total downloads"></img></a>
+
+<a href="https://packagist.org/packages/chapeupreto"><img src="https://img.shields.io/badge/link-packagist-lightgrey.svg" alt="View my other packages and projects"></img></a>
+<a href="https://twitter.com/chapeupreto"><img src="https://img.shields.io/twitter/follow/chapeupreto.svg?style=social" alt="Follow @chapeupreto on Twitter"></img></a>
+<a href="https://twitter.com/intent/tweet?text=Utilize%20Sinesp%20Cidadão%20agora!%20https%3A%2F%2Fgithub.com%2Fchapeupreto%2Fsinesp%20via%20%40chapeupreto&source=webclient"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" alt="Share this package on Twitter"></img></a>
 
 [SINESP Cidadão][1] é uma base de dados pública de veículos brasileiros muito útil para identificar carros ou motos roubados ou suspeitos.
 
