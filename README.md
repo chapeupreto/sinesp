@@ -32,6 +32,9 @@ Se um veículo com a placa especificada for encontrado, o servidor irá retornar
 - *uf*: estado ou unidade federativa do veículo
 - *municipio*: município ou cidade do veículo
 - *chassi*: chassi do veículo
+- *dataAtualizacaoCaracteristicasVeiculo*: data atualização das características do veículo
+- *dataAtualizacaoRouboFurto*: data atualização de informações sobre roubo ou furto
+- *dataAtualizacaoAlarme*: 
 
 Essas informações estarão disponíveis por meio de um `array associativo` ou como `atributo` do objeto.
 
