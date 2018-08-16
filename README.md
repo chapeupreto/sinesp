@@ -34,7 +34,7 @@ Se um veículo com a placa especificada for encontrado, o servidor irá retornar
 - *chassi*: chassi do veículo
 - *dataAtualizacaoCaracteristicasVeiculo*: data atualização das características do veículo
 - *dataAtualizacaoRouboFurto*: data atualização de informações sobre roubo ou furto
-- *dataAtualizacaoAlarme*: 
+- *dataAtualizacaoAlarme*:
 
 Essas informações estarão disponíveis por meio de um `array associativo` ou como `atributo` do objeto.
 
@@ -109,6 +109,21 @@ $veiculo->buscar('GWW-6471', ['ip' => '177.54.144.208', 'porta' => '80']); // a 
 
 print_r($veiculo->dados());
 ```
+
+## Timeout
+Uma vez que o SINESP não mata sua requisição após bloqueio, é provável que você acabe se deparando com erro(s) 504. A fim de evitar transtorno, foi disponibilizado o método `timeout` para definir um tempo máximo de resposta:
+
+```php
+$veiculo->timeout(5); // tempo em segundos
+```
+
+*Dica:* Em combinação com o [proxy](#proxy) (fazendo múltiplas tentativas com diferentes proxies), isso poderá aumentar consideravelmente suas chances de sucesso para múltiplas requisições
+
+![Múltiplos erros 504 com diferentes proxies, mas sem timeout](images/without_proxy_and_timeout.png)
+*Com diferentes proxies, mas sem timeout*
+
+![Maior parte dos 504 contornados usando proxy + timeout](images/with_proxy_and_timeout.png)
+*Com diferentes proxies e timeout*
 
 # Sinesp Python API Client
 
