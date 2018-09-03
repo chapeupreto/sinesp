@@ -12,6 +12,12 @@ class Sinesp
     private $response = '';
     private $dados = [];
 
+    /**
+     * Time (in seconds) to wait for a response
+     * @var int
+     */
+    private $timeout = null;
+
     public function buscar($placa, array $proxy = [])
     {
         if ($proxy) {
@@ -20,6 +26,8 @@ class Sinesp
 
         $this->setUp($placa);
         $this->exec();
+
+        return $this;
     }
 
     public function dados()
@@ -30,6 +38,18 @@ class Sinesp
     public function proxy($ip, $porta)
     {
         $this->proxy = $ip . ':' . $porta;
+    }
+
+    /**
+     * Set a timeout for request(s) that will be made
+     * @param  int  $seconds How much seconds to wait
+     * @return self
+     */
+    public function timeout($seconds)
+    {
+        $this->timeout = $seconds;
+
+        return $this;
     }
 
     public function __get($name)
@@ -53,13 +73,13 @@ class Sinesp
     {
         $xml = $this->xml();
 
-        $headers = array(
-            "Content-type: text/xml;charset=\"utf-8\"",
-            "Accept: text/xml",
-            "Cache-Control: no-cache",
-            "Pragma: no-cache",
-            "Content-length: ".strlen($xml),
-        );
+        $headers = [
+            'Content-type: text/xml;charset="utf-8"',
+            'Accept: text/xml',
+            'Cache-Control: no-cache',
+            'Pragma: no-cache',
+            'Content-length: ' . strlen($xml),
+        ];
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -67,6 +87,11 @@ class Sinesp
 
         if ($this->proxy) {
             curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
+        }
+
+        if ($this->timeout) {
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
+            curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
         }
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -80,7 +105,7 @@ class Sinesp
 
     private function tratarResposta()
     {
-        if (! $this->response) {
+        if (!$this->response) {
             throw new \Exception('O servidor retornou nenhuma resposta!');
         }
 
@@ -91,11 +116,11 @@ class Sinesp
 
     private function verificarRequisitos()
     {
-        if (! function_exists('curl_init')) {
+        if (!function_exists('curl_init')) {
             throw new \Exception('Incapaz de processar. PHP requer biblioteca cURL');
         }
 
-        if (! function_exists('simplexml_load_string')) {
+        if (!function_exists('simplexml_load_string')) {
             throw new \Exception('Incapaz de processar. PHP requer biblioteca libxml');
         }
 
@@ -106,7 +131,7 @@ class Sinesp
     {
         $placa = $this->ajustar($placa);
 
-        if (! $this->validar($placa)) {
+        if (!$this->validar($placa)) {
             throw new \Exception('Placa do veiculo nao especificada ou em formato invalido!');
         }
 
@@ -120,7 +145,7 @@ class Sinesp
 
     private function xml()
     {
-        $xml=<<<EOX
+        $xml = <<<EOX
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <v:Envelope xmlns:v="http://schemas.xmlsoap.org/soap/envelope/">
 <v:Header>
@@ -143,6 +168,7 @@ class Sinesp
 </v:Body>
 </v:Envelope>
 EOX;
+
         return sprintf($xml, $this->latitude(), $this->token(), $this->longitude(), strftime('%Y-%m-%d %H:%M:%S'), $this->placa);
     }
 
