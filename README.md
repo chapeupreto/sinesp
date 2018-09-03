@@ -125,14 +125,10 @@ $veiculo->timeout(5); // tempo em segundos
 ![Maior parte dos 504 contornados usando proxy + timeout](images/with_proxy_and_timeout.png)
 *Com diferentes proxies e timeout*
 
-# Sinesp Python API Client
-
-Uma implementação em linguagem `Python` encontra-se disponível no seguinte repositório: https://github.com/victor-torres/sinesp-client/
-
 # Agradecimentos
 
-Agradecimentos ao [@victor-torres](https://github.com/victor-torres) e seus contribuidores por disponibilizar a [implementação em Python da API](https://github.com/victor-torres/sinesp-client/), a qual serviu como base para o surgimento desta em linguagem [PHP](http://www.php.net/).
-
-Agradecimentos também ao [@ricardotominaga](https://github.com/ricardotominaga) por disponibilizar a secret key.
+- [@victor-torres](https://github.com/victor-torres)
+- [@ricardotominaga](https://github.com/ricardotominaga)
+- [@ivanaugustobd](https://github.com/ivanaugustobd)
 
 [1]: https://www.sinesp.gov.br/sinesp-cidadao "Sinesp Cidadão"
