@@ -47,7 +47,7 @@ class Sinesp
     }
 
     /**
-     * Set an array to the class variable to be used on the loop for testing various proxyes
+     * Set an array to the class variable to be used on the loop for testing various proxies
      * @param  array  $proxyArray The list of the proxy address Ex: [['127.0.0.1','80'],['10.0.0.1','8080']]
      */
     public function setProxyList($proxyArray) {
