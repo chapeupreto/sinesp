@@ -7,6 +7,8 @@ class Sinesp
     private $secret = '#8.1.0#g8LzUadkEHs7mbRqbX5l';
     private $url = 'https://cidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa/v4';
     private $proxy = null;
+    private $proxyList = null;
+    private $proxyKey = null;
 
     private $placa = '';
     private $response = '';
@@ -20,6 +22,10 @@ class Sinesp
 
     public function buscar($placa, array $proxy = [])
     {
+        if (!empty($this->proxyList)) {
+            $this->proxyKey=(int)0;
+        }
+
         if ($proxy) {
             $this->proxy($proxy['ip'], $proxy['porta']);
         }
@@ -38,6 +44,14 @@ class Sinesp
     public function proxy($ip, $porta)
     {
         $this->proxy = $ip . ':' . $porta;
+    }
+
+    /**
+     * Set an array to the class variable to be used on the loop for testing various proxies
+     * @param  array  $proxyArray The list of the proxy address Ex: [['127.0.0.1','80'],['10.0.0.1','8080']]
+     */
+    public function setProxyList($proxyArray) {
+        $this->proxyList=$proxyArray;
     }
 
     /**
@@ -85,6 +99,10 @@ class Sinesp
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_URL, $this->url);
 
+        if (!empty($this->proxyList)) {
+            $this->proxy = $this->proxyList[$this->proxyKey][0] . ':' . $this->proxyList[$this->proxyKey][1];
+        }
+
         if ($this->proxy) {
             curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
         }
@@ -106,7 +124,12 @@ class Sinesp
     private function tratarResposta()
     {
         if (!$this->response) {
-            throw new \Exception('O servidor retornou nenhuma resposta!');
+            if (!empty($this->proxyList) and ($this->proxyKey+1)<=count($this->proxyList)) {
+                $this->proxyKey=$this->proxyKey+1;
+                $this->exec();
+            } else {
+                throw new \Exception('O servidor não retornou nenhuma resposta!');
+            }
         }
 
         $response = str_ireplace(['soap:', 'ns2:'], '', $this->response);
