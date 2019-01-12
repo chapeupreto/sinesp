@@ -6,7 +6,7 @@ class Sinesp
 {
     private $secret = '#8.1.0#g8LzUadkEHs7mbRqbX5l';
     private $url = 'https://cidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa/v4';
-    private $proxy = null;
+    private $proxy = '';
 
     private $placa = '';
     private $response = '';
@@ -16,7 +16,7 @@ class Sinesp
      * Time (in seconds) to wait for a response
      * @var int
      */
-    private $timeout = null;
+    private $timeout = 0;
 
     public function buscar($placa, array $proxy = [])
     {
@@ -89,10 +89,8 @@ class Sinesp
             curl_setopt($ch, CURLOPT_PROXY, $this->proxy);
         }
 
-        if ($this->timeout) {
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
-            curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
-        }
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
@@ -129,13 +127,11 @@ class Sinesp
 
     private function setUp($placa)
     {
-        $placa = $this->ajustar($placa);
-
         if (!$this->validar($placa)) {
             throw new \Exception('Placa do veiculo nao especificada ou em formato invalido!');
         }
 
-        $this->placa = $placa;
+        $this->placa = $this->ajustar($placa);
     }
 
     private function token()
@@ -174,12 +170,12 @@ EOX;
 
     private function validar($placa)
     {
-        return preg_match('/^[a-zA-Z]{3}-?\d{4}$/i', $placa);
+        return preg_match('/^[a-z]{3}-?\d[a-z0-9]{2}\d$/i', trim($placa));
     }
 
     private function ajustar($placa)
     {
-        return str_replace(['-', ' '], '', $placa);
+        return str_replace('-', '', trim($placa));
     }
 
     private function latitude()
