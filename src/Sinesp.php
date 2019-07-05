@@ -78,6 +78,8 @@ class Sinesp
             'Accept: text/xml',
             'Cache-Control: no-cache',
             'Pragma: no-cache',
+            'User-Agent: SinespCidadao / 3.0.2.1 CFNetwork / 758.2.8 Darwin / 15.0.0',
+            'Authorization: Token dFcuIie2158:APA91bELJNW4qatY0gpuQGlLfO2RhxY_z7LZJsUG4VM1TA_HEoazlJfpYYcKNxU8PU6_d7XWi8TXfhJBUyFiSRgpM5xEIu-sw7Ku_HIbaq-VKYoEpCoScGvSRIPyhK61WiiOPS4YASDm',
             'Content-length: ' . strlen($xml),
         ];
 
@@ -147,13 +149,14 @@ class Sinesp
 <v:Header>
 <b>samsung GT-I9192</b>
 <c>ANDROID</c>
-<d>8.1.0</d>
+<d>6.0</d>
 <i>%s</i>
-<e>4.1.5</e>
+<e>4.7.4</e>
 <f>10.0.0.1</f>
 <g>%s</g>
 <k></k>
 <h>%s</h>
+<n> dFcuIie2158</n>
 <l>%s</l>
 <m>8797e74f0d6eb7b1ff3dc114d4aa12d3</m>
 </v:Header>
