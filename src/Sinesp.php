@@ -4,7 +4,7 @@ namespace Sinesp;
 
 class Sinesp
 {
-    private $secret = '#8.1.0#g8LzUadkEHs7mbRqbX5l';
+    private $secret = '#6.0#0KnlVSWHxOih3zKXBWlo';
     private $url = 'https://cidadao.sinesp.gov.br/sinesp-cidadao/mobile/consultar-placa/v4';
     private $proxy = '';
 
